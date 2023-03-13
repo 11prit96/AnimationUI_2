@@ -36,27 +36,24 @@ export default function Carousel() {
     carousel.addEventListener("mouseup", dragStop);
   }, [drag]);
 
-  const slides = [
-    "Slide 1",
-    "Slide 2",
-    "Slide 3",
-    "Slide 4",
-    "Slide 5",
-    "Slide 6",
-    "Slide 7",
-    "Slide 8",
-    "Slide 9",
-    "Slide 10",
-    "Slide 11",
-  ];
+  const slides = ["Slide 1", "Slide 2", "Slide 3", "Slide 4"];
   const [current, setCurrent] = useState(0);
-  const length = 11;
+  const [currentPos, setCurrentPos] = useState(0);
+  const length = slides.length;
 
   const handlePrevious = () => {
+    document.getElementById("carousel").style.transform = `translateX(${
+      currentPos - 30
+    }rem)`;
+    setCurrentPos(currentPos === 0 ? currentPos + 40 : currentPos - 30);
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
   const handleNext = () => {
+    document.getElementById("carousel").style.transform = `translateX(${
+      currentPos + 30
+    }rem)`;
+    setCurrentPos(currentPos === currentPos + 40 ? currentPos - 40 : currentPos + 30);
     setCurrent(current === length - 1 ? 0 : current + 1);
   };
 
@@ -66,7 +63,7 @@ export default function Carousel() {
 
   return (
     <Container>
-      <div id="carousel" className={styles.scrollport}>
+      <Box sx={{ position: "relative", width: "100%" }}>
         <ArrowBackIosIcon
           onClick={handlePrevious}
           id="prev"
@@ -75,8 +72,9 @@ export default function Carousel() {
             fontSize: "3rem",
             left: "1rem",
             position: "absolute",
-            top: "50%",
-            transform: "translateY(-50%)",
+            top: "15rem",
+            zIndex: "100",
+            // transform: "translateY(-50%)",
           }}
         />
         <ArrowForwardIosIcon
@@ -87,10 +85,13 @@ export default function Carousel() {
             fontSize: "3rem",
             right: "1rem",
             position: "absolute",
-            top: "50%",
-            transform: "translateY(-50%)",
+            top: "15rem",
+            zIndex: "100",
+            // transform: "translateY(-50%)",
           }}
         />
+      </Box>
+      <div id="carousel" className={styles.scrollport}>
         {slides.map((slide, index) => {
           return (
             <div

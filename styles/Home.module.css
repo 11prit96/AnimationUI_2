@@ -72,12 +72,11 @@
 .scrollport {
   background: linear-gradient(to right, #0000, #000, #000, #0000);
 
-  overflow-x: auto;
+  overflow-x: none;
   /* overscroll-behavior-x: contain; */
-  position: relative;
   display: flex;
   
-  gap: 10rem;
+  gap: 2rem;
   /* align-items: flex-start; */
   padding: 5rem;
   width: 100%;

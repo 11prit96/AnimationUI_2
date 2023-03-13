@@ -46,8 +46,10 @@ const navItems = [
 
 function DrawerAppBar(props) {
   useEffect(() => {
+
     let nav = document.getElementById("navbar");
     let scrollBefore = 0;
+    
     window.addEventListener("scroll", () => {
       let scrolled = window.scrollY;
 
@@ -96,7 +98,6 @@ function DrawerAppBar(props) {
       <AppBar
         className={showNav ? styles.scrollUp : styles.scrollDown}
         component="nav"
-        position="fixed"
         id="navbar"
         sx={{
           backgroundColor: theme.palette.primary.main,
